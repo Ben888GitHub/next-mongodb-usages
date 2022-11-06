@@ -157,7 +157,7 @@ export default function Home({ allPosts }) {
 	);
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
 	const res = await fetch('https://next-mongodb-usages.vercel.app/api/posts', {
 		method: 'GET',
 		headers: {
@@ -169,6 +169,7 @@ export const getServerSideProps = async () => {
 	return {
 		props: {
 			allPosts
-		}
+		},
+		revalidate: 10
 	};
 };
