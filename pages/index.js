@@ -83,7 +83,6 @@ export const getServerSideProps = async () => {
 		}
 	});
 	let allPosts = await res.json();
-	console.log(allPosts);
 
 	return {
 		props: {
