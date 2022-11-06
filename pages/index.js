@@ -16,13 +16,16 @@ export default function Home({ allPosts }) {
 
 	const handleAddPost = async (e) => {
 		setLoading(true);
-		const newPost = await fetch('http://localhost:3000/api/posts', {
-			method: 'POST',
-			body: JSON.stringify({
-				title: title,
-				content: content
-			})
-		});
+		const newPost = await fetch(
+			'https://next-mongodb-usages.vercel.app/api/posts',
+			{
+				method: 'POST',
+				body: JSON.stringify({
+					title: title,
+					content: content
+				})
+			}
+		);
 		newPost = await newPost.json();
 		console.log(newPost);
 		setPostsState([
@@ -76,7 +79,7 @@ export default function Home({ allPosts }) {
 }
 
 export const getServerSideProps = async () => {
-	const res = await fetch('http://localhost:3000/api/posts', {
+	const res = await fetch('https://next-mongodb-usages.vercel.app/api/posts', {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
