@@ -66,11 +66,11 @@ function Post({ post }) {
 
 export default Post;
 
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
 	console.log(context);
 
 	const res = await fetch(
-		`https://next-mongodb-usages.vercel.app/api/posts/${context.params.id}`,
+		`https://next-mongodb-usages.vercel.app/api/posts/${context.query.id}`,
 		{
 			method: 'GET',
 			headers: {
@@ -86,14 +86,13 @@ export const getStaticProps = async (context) => {
 	return {
 		props: {
 			post
-		},
-		revalidate: 5
+		}
 	};
 };
 
-export const getStaticPaths = () => {
-	return {
-		paths: [],
-		fallback: 'blocking'
-	};
-};
+// export const getStaticPaths = () => {
+// 	return {
+// 		paths: [],
+// 		fallback: 'blocking'
+// 	};
+// };
